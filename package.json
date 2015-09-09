@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "start": "sh ./start.sh",
-    "stop ": "sh ./stop.sh"
+    "stop": "sh ./stop.sh"
   },
   "mazehall": true,
   "eintopf": {
