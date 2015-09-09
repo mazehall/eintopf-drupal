@@ -1,0 +1,22 @@
+web:
+  image: drupal:8
+  environment:
+    - VIRTUAL_HOST=drupal.dev
+  volumes:
+    - /projects/drupal/:/var/www/html/
+  links:
+    - db:mysql
+  command: sh -c '
+    if [ ! -f index.php ]; then
+      curl -fSL "https://github.com/drupal/drupal/archive/8.0.0-beta15.tar.gz" -o drupal.tar.gz;
+      tar -xz --strip-components=1 -f drupal.tar.gz;
+      rm drupal.tar.gz;
+      chown www-data:www-data -R sites;
+    fi;
+    apache2-foreground;
+    '
+db:
+  image: mysql:5.7
+  environment:
+    - MYSQL_ROOT_PASSWORD=secret
+    - MYSQL_DATABASE=drupal

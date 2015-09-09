@@ -1,0 +1,14 @@
+{
+  "name": "eintopf-drupal",
+  "version": "0.1.0",
+  "scripts": {
+    "start": "sh ./start.sh",
+    "stop ": "sh ./stop.sh"
+  },
+  "mazehall": true,
+  "eintopf": {
+    "name": "Drupal",
+    "description": "Drupal is a free and open-source content-management framework written in PHP. It’s built, used, and supported by an active and diverse community of people around the world."
+  },
+  "license": "MIT"
+}
