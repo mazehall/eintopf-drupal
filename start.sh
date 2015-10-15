@@ -1,21 +1,25 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-DOCKER_COMPOSE_BIN=`which docker-compose`
+. ./project.sh
 
-# env
-if [ -z "$DOCKER_HOST" ]; then
-    echo "no DOCKER_HOST env set";
-    exit 1
-fi
-if [ -z "$DOCKER_COMPOSE_BIN" ]; then
-    echo "docker-compose binary not found";
-    exit 1
-fi
+DRUPAL_TAG="7.40"
 
-echo "start docker containers"
-if ! $DOCKER_COMPOSE_BIN up -d ; then
-    echo "starting docker containers failed";
+if ! [ -d "$PROJECT_PATH/.git" ]; then
+  echo "cloning drupal sources..."
+  if ! xgit clone https://github.com/drupal/drupal "$PROJECT_PATH"; then
+    echo "git clone failed"
     exit 1
+  fi
 fi
 
+cd "$PROJECT_PATH"
+if [ "`git name-rev --tags --name-only $(git rev-parse HEAD)`" != "$DRUPAL_TAG" ]; then
+  echo "Checkout drupal version $DRUPAL_TAG..."
+  if ! git fetch || ! git checkout $DRUPAL_TAG; then
+    echo "Failed to change to drupal version $DRUPAL_TAG"
+    exit
+  fi
+fi
+
+xcompose "up -d"
 echo "done"

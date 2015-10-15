@@ -4,16 +4,21 @@ Drupal is a free and open-source content-management framework written in PHP and
 
 > Official [Drupal Container](https://hub.docker.com/_/drupal/)
 
+
 ## What is Eintopf?
 
 Eintopf is a pot with the mixture of the smart development tools Docker, Vagrant and VirtualBox. Made to ease the chore of the daily project works.
 
-## How to use
 
-1. Download the latest version of Eintopf
-2. Follow the [install instructions](https://github.com/mazehall/eintopf#installation-1)
-3. Start Eintopf and go to `Projects -> Create Project`, enter the address of this repo and click on **install**
-4. Done!
+## Requirements
+
+- git
+
+
+## Install
+
+Start the drupal app and finish the setup. As for the database configuration use the mysql preset or sqlite.
+
 
 ## Database configuration
 
